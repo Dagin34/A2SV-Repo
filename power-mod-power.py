@@ -1,5 +1,5 @@
 a = int(input())
 b = int(input())
 m = int(input())
-print(pow(a,b))
+print(1+"Hi")
 print(pow(a,b,m))
