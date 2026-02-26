@@ -1,0 +1,20 @@
+test_cases = int(input())
+
+for _ in range(test_cases):
+    n = int(input())
+    arr = list(map(int, input().split()))
+    
+    if n == 1:
+        print("YES")
+        continue
+    
+    arr.sort()
+    
+    possible = True
+    
+    for i in range(n - 1):
+        if arr[i + 1] - arr[i] > 1:
+            possible = False
+            break
+    
+    print("YES" if possible else "NO")
