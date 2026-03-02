@@ -7,11 +7,11 @@ for _ in range(test_cases):
     arr = list(map(int, input().split()))
 
     counts = Counter(arr)
-    im_the_goat = False #Even tho I am the GOAT of Halloween Heists
+    amazing_detective_slash_genius = False 
 
     for i in counts:
         if counts[i] % 2 != 0:
-            im_the_goat = True
+            amazing_detective_slash_genius = True
             break
     
-    print("YES" if im_the_goat else "NO")
+    print("YES" if amazing_detective_slash_genius else "NO")
