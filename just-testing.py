@@ -33,16 +33,69 @@
 # print(smallestNumber(95005))
 
 # ===================================== BREAKER =====================================
-def frequencySort(s: str) -> str:
-    counter = {}
-    for char in s:
-        if char in counter:
-            counter[char] += 1
-        else:
-            counter[char] = 1
+# def frequencySort(s: str) -> str:
+#     counter = {}
+#     for char in s:
+#         if char in counter:
+#             counter[char] += 1
+#         else:
+#             counter[char] = 1
     
-    counter = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
-    result = [char*count for char, count in counter.items()]
-    return ''.join(result)
+#     counter = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+#     result = [char*count for char, count in counter.items()]
+#     return ''.join(result)
 
-print(frequencySort('tree'))
+# print(frequencySort('tree'))
+
+# ===================================== BREAKER =====================================
+# from collections import Counter
+
+# def relativeSortArray(arr1: list[int], arr2: list[int]) -> list[int]:
+#     results = []
+#     left, right = 0, 0
+#     count = Counter(arr1)
+#     print(count)
+    
+#     while left < len(arr2) and right < len(arr1):
+#         if arr2[left] != arr1[right]:
+#             right += 1
+#         else:
+#             # results.extend(arr1[right] * count.get(arr1[right]))
+#             right = 0
+#             left += 1
+    
+#     return results
+
+# print(relativeSortArray([2,3,1,3,2,4,6,7,9,2,19], [2,1,4,3,9,6]))
+
+# ===================================== BREAKER =====================================
+# def maxWidthOfVerticalArea(points: list[list[int]]) -> int:
+#     x_coords = sorted([p[0] for p in points])
+    
+#     max_width = 0
+#     for i in range(len(x_coords) - 1):
+#         width = x_coords[i+1] - x_coords[i]
+#         if width > max_width:
+#             max_width = width
+            
+#     return max_width
+# list = [[8,7],[9,9],[7,4],[9,7]]
+# print(maxWidthOfVerticalArea(list))
+# list = [[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]
+# print(maxWidthOfVerticalArea(list))
+# list = [[1,5],[1,70],[3,1000],[55,700],[999876789,53],[987853567,12]]
+# print(maxWidthOfVerticalArea(list))
+
+# ===================================== BREAKER =====================================
+def appendCharacters(s: str, t: str) -> int:
+    left, right = 0, 0
+    while left < len(s) and right < len(t):
+        if s[left] == t[right]:
+            right += 1
+        left += 1
+    
+    return len(t) - right
+
+print(appendCharacters(s = "coaching", t = "coding"))
+print(appendCharacters(s = "abcde", t = "a"))
+print(appendCharacters(s = "z", t = "abcde"))
