@@ -87,15 +87,33 @@
 # print(maxWidthOfVerticalArea(list))
 
 # ===================================== BREAKER =====================================
-def appendCharacters(s: str, t: str) -> int:
-    left, right = 0, 0
-    while left < len(s) and right < len(t):
-        if s[left] == t[right]:
-            right += 1
-        left += 1
+# def appendCharacters(s: str, t: str) -> int:
+#     left, right = 0, 0
+#     while left < len(s) and right < len(t):
+#         if s[left] == t[right]:
+#             right += 1
+#         left += 1
     
-    return len(t) - right
+#     return len(t) - right
 
-print(appendCharacters(s = "coaching", t = "coding"))
-print(appendCharacters(s = "abcde", t = "a"))
-print(appendCharacters(s = "z", t = "abcde"))
+# print(appendCharacters(s = "coaching", t = "coding"))
+# print(appendCharacters(s = "abcde", t = "a"))
+# print(appendCharacters(s = "z", t = "abcde"))
+
+# ===================================== BREAKER =====================================
+class Solution:
+    def maxArea(self, height: list[int]) -> int:
+        left = 0
+        right = len(height) - 1
+        max_area = 0
+
+        while left < right:
+            area = min(height[left], height[right]) * (right - left)
+            max_area = max(max_area, area)
+
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+
+        return max_area
