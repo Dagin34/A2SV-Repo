@@ -117,3 +117,22 @@ class Solution:
                 right -= 1
 
         return max_area
+    
+class Solution:
+    def matchPlayersAndTrainers(self, players, trainers):
+        players.sort()
+        trainers.sort()
+
+        left = 0
+        right = 0
+        matches = 0
+
+        while left < len(players) and right < len(trainers):
+            if players[left] <= trainers[right]:
+                matches += 1
+                left += 1
+                right += 1
+            else:
+                right += 1
+
+        return matches

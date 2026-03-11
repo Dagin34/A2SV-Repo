@@ -7,3 +7,4 @@ class Solution:
                 nums[pointer] = nums[j]
 
         return pointer + 1
+        
