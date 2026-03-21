@@ -136,3 +136,6 @@ class Solution:
                 right += 1
 
         return matches
+
+class Solution:
+    def duplicateZeros(self, arr: list[int]) -> None:
