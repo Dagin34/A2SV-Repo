@@ -1,32 +1,24 @@
-import sys 
+import sys
+from collections import defaultdict
+import heapq
 
-input_data = sys.stdin.read().split()
+input = sys.stdin.readline
 
-ptr = 0
-t = int(input_data[ptr])
-ptr += 1
+t = int(input())
 
-results = []
 for _ in range(t):
-    n = int(input_data[ptr])
-    k = int(input_data[ptr + 1])
-    ptr += 2
-    brand_totals = {}
+    n, k = map(int, input().split())
+    
+    brand_sum = defaultdict(int)
     
     for _ in range(k):
-        b = int(input_data[ptr])
-        c = int(input_data[ptr + 1])
-        ptr += 2
-        
-        if b in brand_totals:
-            brand_totals[b] += c
-        else:
-            brand_totals[b] = c
+        b, c = map(int, input().split())
+        brand_sum[b] += c
     
-    profits = list(brand_totals.values())
-    profits.sort(reverse=True)
+    # take only top n values using heap
+    values = list(brand_sum.values())
     
-    total_earned = sum(profits[:n])
-    results.append(str(total_earned))
-
-print("\n".join(results))
+    if len(values) <= n:
+        print(sum(values))
+    else:
+        print(sum(heapq.nlargest(n, values)))
