@@ -101,77 +101,143 @@
 # print(appendCharacters(s = "z", t = "abcde"))
 
 # ===================================== BREAKER =====================================
-class Solution:
-    def maxArea(self, height: list[int]) -> int:
-        left = 0
-        right = len(height) - 1
-        max_area = 0
+# class Solution:
+#     def maxArea(self, height: list[int]) -> int:
+#         left = 0
+#         right = len(height) - 1
+#         max_area = 0
 
-        while left < right:
-            area = min(height[left], height[right]) * (right - left)
-            max_area = max(max_area, area)
+#         while left < right:
+#             area = min(height[left], height[right]) * (right - left)
+#             max_area = max(max_area, area)
 
-            if height[left] < height[right]:
-                left += 1
-            else:
-                right -= 1
+#             if height[left] < height[right]:
+#                 left += 1
+#             else:
+#                 right -= 1
 
-        return max_area
+#         return max_area
     
-class Solution:
-    def matchPlayersAndTrainers(self, players, trainers):
-        players.sort()
-        trainers.sort()
+# ===================================== BREAKER =====================================
+# class Solution:
+#     def matchPlayersAndTrainers(self, players, trainers):
+#         players.sort()
+#         trainers.sort()
 
-        left = 0
-        right = 0
-        matches = 0
+#         left = 0
+#         right = 0
+#         matches = 0
 
-        while left < len(players) and right < len(trainers):
-            if players[left] <= trainers[right]:
-                matches += 1
-                left += 1
-                right += 1
-            else:
-                right += 1
+#         while left < len(players) and right < len(trainers):
+#             if players[left] <= trainers[right]:
+#                 matches += 1
+#                 left += 1
+#                 right += 1
+#             else:
+#                 right += 1
 
-        return matches
+#         return matches
     
-class Solution:
-    def getAverages(self, nums: list[int], k: int) -> list[int]:
-        result = [-1] * len(nums)
+# ===================================== BREAKER =====================================
+# class Solution:
+#     def getAverages(self, nums: list[int], k: int) -> list[int]:
+#         result = [-1] * len(nums)
         
-        if k == 0:
-            return nums
+#         if k == 0:
+#             return nums
         
-        window = 2 * k + 1
-        if window > len(nums):
-            return result
+#         window = 2 * k + 1
+#         if window > len(nums):
+#             return result
         
-        s = sum(nums[:window])
-        result[k] = s // window
+#         s = sum(nums[:window])
+#         result[k] = s // window
         
-        for i in range(window, len(nums)):
-            s += nums[i] - nums[i - window]
-            result[i - k] = s // window
+#         for i in range(window, len(nums)):
+#             s += nums[i] - nums[i - window]
+#             result[i - k] = s // window
         
-        return result
+#         return result
     
-class Solution:
-    def minimumRecolors(self, blocks: str, k: int) -> int:
-        white = 0
-        for i in range(k):
-            if blocks[i] == 'W':
-                white += 1
+# ===================================== BREAKER =====================================
+# class Solution:
+#     def minimumRecolors(self, blocks: str, k: int) -> int:
+#         white = 0
+#         for i in range(k):
+#             if blocks[i] == 'W':
+#                 white += 1
         
-        result = white
-        for i in range(k, len(blocks)):
-            if blocks[i] == 'W':
-                white += 1
-            if blocks[i - k] == 'W':
-                white -= 1
+#         result = white
+#         for i in range(k, len(blocks)):
+#             if blocks[i] == 'W':
+#                 white += 1
+#             if blocks[i - k] == 'W':
+#                 white -= 1
             
-            if white < result:
-                result = white
+#             if white < result:
+#                 result = white
         
-        return result
+#         return result
+
+# ===================================== BREAKER =====================================
+# Problem A
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    s = input().strip()
+
+    min_char = min(s)
+    last_pos = s.rfind(min_char)
+    print(s[last_pos] + s[:last_pos] + s[last_pos + 1:])
+
+# Problem B
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    s = input().strip()
+    
+    freq = [0] * 26
+    for c in s:
+        freq[ord(c) - ord('a')] += 1
+    
+    for i, c in enumerate(s):
+        freq[ord(c) - ord('a')] -= 1
+        if freq[ord(c) - ord('a')] == 0:
+            print(s[i:])
+            break
+
+# Problem C
+def solve():
+    n_str = input().strip()
+    n = int(n_str)
+    a = list(map(int, input().split()))
+
+    first_nonzero = -1
+    for i in range(n - 1):
+        if a[i] > 0:
+            first_nonzero = i
+            break
+            
+    if first_nonzero == -1:
+        print(0)
+        return
+    
+    ans = 0
+    for i in range(first_nonzero, n - 1):
+        if a[i] == 0:
+            ans += 1
+        else:
+            ans += a[i]
+            
+    print(ans)
+
+line = input().strip()
+if line:
+    test_cases = int(line)
+    for _ in range(test_cases):
+        solve()
